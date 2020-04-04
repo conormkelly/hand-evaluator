@@ -1,15 +1,15 @@
 const PokerEvaluator = require('../lib/PokerEvaluator');
 
-describe('evalHand', function() {
-  describe('should throw', function() {
-    it('if 4 cards', function() {
-      expect(function() {
-        PokerEvaluator.evalHand(['As', 'Ac', 'Ad', '5s']);
+describe('evalHand', function () {
+  describe('should throw', function () {
+    it('if 4 cards', function () {
+      expect(function () {
+        PokerEvaluator.evaluateHand(['As', 'Ac', 'Ad', '5s']);
       }).toThrow();
     });
-    it('if 8 cards', function() {
-      expect(function() {
-        PokerEvaluator.evalHand([
+    it('if 8 cards', function () {
+      expect(function () {
+        PokerEvaluator.evaluateHand([
           'As',
           'Ac',
           'Ad',
@@ -17,35 +17,29 @@ describe('evalHand', function() {
           'Ad',
           'Ah',
           '5c',
-          '5s'
+          '5s',
         ]);
       }).toThrow();
     });
   });
-  it('5 cards, full house', function() {
-    expect(PokerEvaluator.evalHand(['As', 'Ac', 'Ad', '5d', '5s'])).toEqual({
-      handType: 7,
-      handRank: 148,
-      value: 28820,
-      handName: 'full house'
-    });
+  it('5 cards, full house', function () {
+    expect(PokerEvaluator.evaluateHand(['As', 'Ac', 'Ad', '5d', '5s'])).toEqual(
+      {
+        type: 7,
+        rank: 148,
+        value: 28820,
+        name: 'FULL_HOUSE',
+      }
+    );
   });
-  it('3 cards, one pair', function() {
-    expect(PokerEvaluator.evalHand(['As', 'Ac', 'Qs'])).toEqual({
-      handType: 2,
-      handRank: 2761,
-      value: 10953,
-      handName: 'one pair'
-    });
-  });
-  it('7 cards, straight flush', function() {
+  it('7 cards, straight flush', function () {
     expect(
-      PokerEvaluator.evalHand(['As', 'Ks', 'Qs', 'Js', 'Ts', '3c', '5h'])
+      PokerEvaluator.evaluateHand(['As', 'Ks', 'Qs', 'Js', 'Ts', '3c', '5h'])
     ).toEqual({
-      handType: 9,
-      handRank: 10,
+      type: 9,
+      rank: 10,
       value: 36874,
-      handName: 'straight flush'
+      name: 'STRAIGHT_FLUSH',
     });
   });
 });
