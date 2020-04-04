@@ -1,42 +1,37 @@
 # Poker Hand Evaluator
 
-Poker hand evaluator using the Two Plus Two alogorithm and lookup table.
+Intended for use as a library to evaluate hands in a Texas Hold Em game engine.
+
+It uses the [Two Plus Two alogorithm](https://github.com/tangentforks/TwoPlusTwoHandEvaluator) and lookup table.
 The lookup table HandRanks.dat is included in the module.
 
-It is capable of evaluating 7, 6, 5, and 3 card hands.  The highest hand possible in a 3 card hand is 3 of a kind, straights & flushes do not apply to 3 cards.
+It is capable of evaluating 5, 6 and 7 card hands.
 
-Hands can be evaluated by comparing the handType then the handRank to determine the better hand.
+Hands can be evaluated by comparing the _type_ then the _rank_ to determine the better hand.
 
-This can evaluate about 22MM hands per second on a quad-core 2.7GHz Macbook Pro.  Run the speedtest.js file under /test to try it.
+This can evaluate about 22MM hands per second on a quad-core 2.7GHz Macbook Pro.
 
-## to install:
+Run the speedtest.js file under /test to try it.
 
-npm install poker-evaluator
-
-## Usage:
+## Usage
 
 ```js
-var PokerEvaluator = require("poker-evaluator");
+var PokerEvaluator = require("./lib/poker-evaluator");
 
-PokerEvaluator.evalHand(["As", "Ks", "Qs", "Js", "Ts", "3c", "5h"]);
+PokerEvaluator.evaluateHand(["As", "Ks", "Qs", "Js", "Ts", "3c", "5h"]);
 
-//{ handType: 9,
-//  handRank: 10,
+//{ type: 9,
+//  rank: 10,
 //  value: 36874,
-//  handName: 'straight flush' }
+//  name: 'STRAIGHT_FLUSH' }
 
-PokerEvaluator.evalHand(["As", "Ac", "Ad", "5d", "5s"]);
+PokerEvaluator.evaluateHand(["As", "Ac", "Ad", "5d", "5s"]);
 
-//{ handType: 7,
-//  handRank: 148,
+//{ type: 7,
+//  rank: 148,
 //  value: 28820,
-//  handName: 'full house' }
+//  name: 'FULL_HOUSE' }
 
-PokerEvaluator.evalHand(["As", "Ac", "Qs"]);
+## Credit
 
-//{ handType: 2,
-//  handRank: 2761,
-//  value: 10953,
-//  handName: 'one pair' }
-
-```
+Forked from [chenosaurus' poker-evaluator](https://github.com/chenosaurus/poker-evaluator).
