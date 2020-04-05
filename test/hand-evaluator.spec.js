@@ -1,15 +1,15 @@
-const PokerEvaluator = require('../lib/PokerEvaluator');
+const HandEvaluator = require('../lib/HandEvaluator');
 
 describe('evalHand', function () {
   describe('should throw', function () {
     it('if 4 cards', function () {
       expect(function () {
-        PokerEvaluator.evaluateHand(['As', 'Ac', 'Ad', '5s']);
+        HandEvaluator.evaluateHand(['As', 'Ac', 'Ad', '5s']);
       }).toThrow();
     });
     it('if 8 cards', function () {
       expect(function () {
-        PokerEvaluator.evaluateHand([
+        HandEvaluator.evaluateHand([
           'As',
           'Ac',
           'Ad',
@@ -23,7 +23,7 @@ describe('evalHand', function () {
     });
   });
   it('5 cards, full house', function () {
-    expect(PokerEvaluator.evaluateHand(['As', 'Ac', 'Ad', '5d', '5s'])).toEqual(
+    expect(HandEvaluator.evaluateHand(['As', 'Ac', 'Ad', '5d', '5s'])).toEqual(
       {
         type: 7,
         rank: 148,
@@ -34,7 +34,7 @@ describe('evalHand', function () {
   });
   it('7 cards, straight flush', function () {
     expect(
-      PokerEvaluator.evaluateHand(['As', 'Ks', 'Qs', 'Js', 'Ts', '3c', '5h'])
+      HandEvaluator.evaluateHand(['As', 'Ks', 'Qs', 'Js', 'Ts', '3c', '5h'])
     ).toEqual({
       type: 9,
       rank: 10,
