@@ -65,7 +65,7 @@ function enumerateAllHands() {
   );
 }
 
-assert.equal(evaluator.CARDS['as'], 52);
+assert.equal(evaluator.CARDS['As'], 52);
 assert.equal(evaluator.HANDTYPES.length, 10);
 assert.deepEqual(evaluator.evaluate([1, 2, 3, 4, 5]), {
   type: 8,
